@@ -13,6 +13,7 @@ class Login extends Component {
             email: "",
             password: "",
             show: false,
+            flagUser: false
         };
     }
 
@@ -45,7 +46,6 @@ class Login extends Component {
                         Swal.fire({
                             title: "Error",
                             html: "Usuario o contraseña incorrectos",
-                            type: "error",
                             icon: "error",
                             confirmButtonText: "Aceptar",
                             onAfterClose: () => {
@@ -57,7 +57,6 @@ class Login extends Component {
                 Swal.fire({
                     title: "Error",
                     html: "Debes ingresar una contraseña válida de al menos 6 caracteres",
-                    type: "error",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                     onAfterClose: () => {
@@ -69,7 +68,6 @@ class Login extends Component {
             Swal.fire({
                 title: "Error",
                 html: "Debes ingresar un correo válido",
-                type: "error",
                 icon: "error",
                 confirmButtonText: "Aceptar",
                 onAfterClose: () => {
@@ -99,7 +97,7 @@ class Login extends Component {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h1>Log in</h1>
+                        <h1>Iniciar Sesión</h1>
 
                         <div>
                             <TextField
@@ -129,7 +127,7 @@ class Login extends Component {
 
                         <div>
                             <Button variant="contained" color="default" onClick={this.login}>
-                                Log In
+                                Iniciar Sesión
                             </Button>
                         </div>
 
