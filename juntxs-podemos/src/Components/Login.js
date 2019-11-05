@@ -38,7 +38,7 @@ class Login extends Component {
               .auth()
               .signInWithEmailAndPassword(this.state.email, this.state.password)
               .then(u => {
-                this.state.flagUser = true;
+                this.setState({flagUser: true})
                 console.log("SUCCESS LOGGING IN")
               })
               .catch(error => {
@@ -131,7 +131,7 @@ class Login extends Component {
                         <br></br>
 
                         <div>
-                            ¿No tienes cuenta? <a href="">Crea una</a>
+                            ¿No tienes cuenta? <a href="/SignUp">Crea una</a>
                         </div>
 
                     </Container>
