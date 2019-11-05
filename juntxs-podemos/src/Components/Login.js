@@ -25,64 +25,69 @@ class Login extends Component {
         var validator = require("email-validator"); //para validar que sea un correo
 
         if (validator.validate(this.state.email)) {
-          var passwordValidator = require("password-validator"); // para validar que sea una password válida
-          var schema = new passwordValidator();
-          schema
-            .is().min(6) 
-            .is().max(20) 
-            .has().not().spaces(); 
-    
-          if (schema.validate(this.state.password)) {
-            if (e) e.preventDefault();
-            firebase
-              .auth()
-              .signInWithEmailAndPassword(this.state.email, this.state.password)
-              .then(u => {
-                this.setState({flagUser: true})
-                console.log("SUCCESS LOGGING IN")
-              })
-              .catch(error => {
+            var passwordValidator = require("password-validator"); // para validar que sea una password válida
+            var schema = new passwordValidator();
+            schema
+                .is().min(6)
+                .is().max(20)
+                .has().not().spaces();
+
+            if (schema.validate(this.state.password)) {
+                if (e) e.preventDefault();
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(this.state.email, this.state.password)
+                    .then(u => {
+                        this.setState({ flagUser: true })
+                        console.log("SUCCESS LOGGING IN")
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: "Error",
+                            html: "Usuario o contraseña incorrectos",
+                            type: "error",
+                            icon: "error",
+                            confirmButtonText: "Aceptar",
+                            onAfterClose: () => {
+                                this.setState({ show: false });
+                            }
+                        });
+                    });
+            } else {
                 Swal.fire({
-                  title: "Error",
-                  html: "Usuario o contraseña incorrectos",
-                  type: "error",
-                  icon: "error",
-                  confirmButtonText: "Aceptar",
-                  onAfterClose: () => {
-                    this.setState({ show: false });
-                  }
+                    title: "Error",
+                    html: "Debes ingresar una contraseña válida de al menos 6 caracteres",
+                    type: "error",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                    onAfterClose: () => {
+                        this.setState({ show: false });
+                    }
                 });
-              });
-          } else {
-            Swal.fire({
-              title: "Error",
-              html: "Debes ingresar una contraseña válida de al menos 6 caracteres",
-              type: "error",
-              icon: "error",
-              confirmButtonText: "Aceptar",
-              onAfterClose: () => {
-                this.setState({ show: false });
-              }
-            });
-          }
-        } else {
-          Swal.fire({
-            title: "Error",
-            html: "Debes ingresar un correo válido",
-            type: "error",
-            icon: "error",
-            confirmButtonText: "Aceptar",
-            onAfterClose: () => {
-              this.setState({ show: false });
             }
-          });
+        } else {
+            Swal.fire({
+                title: "Error",
+                html: "Debes ingresar un correo válido",
+                type: "error",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+                onAfterClose: () => {
+                    this.setState({ show: false });
+                }
+            });
         }
-      };
+    };
 
     render() {
         return (
             <div>
-                <div id="leftHalf"></div>
+                <div id="leftHalf">
+                    <Container>
+                        <h1>Juntxs Podemos</h1>
+                    </Container>
+
+                </div>
                 <div id="rightHalf">
                     <Container>
                         <br></br>
