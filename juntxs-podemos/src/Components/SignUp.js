@@ -14,22 +14,99 @@ class SignUp extends Component {
             password: "",
             password2: "",
             show: false,
-            flagUser: false
+            flagUser: false,
+            name: ""
         };
     }
 
+    handleChange = e => {
+        console.log(e.target.name, e.target.value)
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
     signUp = e => {
         
-
-        Swal.fire({
-            title: "¡Usuario creado!",
-            html: "Por favor checa tu correo para verificar tu cuenta.",
-            icon: "success",
-            confirmButtonText: "Aceptar",
-            onAfterClose: () => {
-                this.setState({ show: false });
+        if(this.state.email !== "" && this.state.name !== "" && this.state.password !== "" && this.state.password2 !== ""){
+            var validator = require("email-validator"); //para validar que sea un correo
+            if (validator.validate(this.state.email)) {
+                var passwordValidator = require("password-validator"); // para validar que sea una password válida
+                var schema = new passwordValidator();
+                schema
+                    .is().min(6)
+                    .is().max(20)
+                    .has().not().spaces();
+                if (schema.validate(this.state.password)) { //la contraseña es valida
+                    if(this.state.password === this.state.password2){   //la contraseña es la misma a la de confirmar
+                        if (e) e.preventDefault();
+                        firebase
+                            .auth()
+                            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+                            .then(u => {
+                                Swal.fire({
+                                    title: "¡Èxito!",
+                                    html: "Creación de usuario exitosa",
+                                    icon: "success",
+                                    confirmButtonText: "Aceptar",
+                                    onAfterClose: () => {
+                                        this.setState({ show: false });
+                                    }
+                                });
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: "Error",
+                                    html: "Error creando usuario",
+                                    icon: "error",
+                                    confirmButtonText: "Aceptar",
+                                    onAfterClose: () => {
+                                        this.setState({ show: false });
+                                    }
+                                });
+                            })
+                    } else {
+                        Swal.fire({
+                            title: "Error",
+                            html: "Las dos contraseñas deben ser idénticas",
+                            icon: "error",
+                            confirmButtonText: "Aceptar",
+                            onAfterClose: () => {
+                                this.setState({ show: false });
+                            }
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        html: "Debes ingresar una contraseña válida de al menos 6 caracteres",
+                        icon: "error",
+                        confirmButtonText: "Aceptar",
+                        onAfterClose: () => {
+                            this.setState({ show: false });
+                        }
+                    });
+                }
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    html: "Debes ingresar un correo válido",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                    onAfterClose: () => {
+                        this.setState({ show: false });
+                    }
+                });
             }
-        });
+        } else {
+            Swal.fire({
+                title: "Error",
+                html: "Todas las areas deben de estar llenas",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+                onAfterClose: () => {
+                    this.setState({ show: false });
+                }
+            });
+        }
     }
 
     render() {
@@ -57,8 +134,9 @@ class SignUp extends Component {
                         <div>
                             <TextField
                                 id="standard-basic"
-                                label="Nombre"
+                                label="Nombre y Apellido"
                                 margin="normal"
+                                name="name"
                                 value={this.state.name}
                                 onChange={this.handleChange}
                             />
@@ -107,6 +185,12 @@ class SignUp extends Component {
                             <Button variant="contained" color="default" onClick={this.signUp}>
                                 Crear Usuario
                             </Button>
+                        </div>
+
+                        <br></br>
+
+                        <div>
+                            Regresar a  <a href="/">iniciar sesión</a>
                         </div>
 
                     </Container>
