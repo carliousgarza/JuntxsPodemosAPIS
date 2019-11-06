@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Container } from "@material-ui/core"
 import Swal from "sweetalert2"
+import Navbar from './Navbar'
 
 class Home extends Component {
     constructor(props) {
@@ -20,7 +21,9 @@ class Home extends Component {
     render() {
         return (
             <div>
-                Holi
+                {firebase.auth().currentUser ? <Navbar></Navbar> 
+                : 
+                window.location.href = "/"}
             </div>
         );
     }
