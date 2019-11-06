@@ -3,7 +3,7 @@ import "./Login.css"
 import firebase from '../config/firebase'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { Container } from "@material-ui/core"
+import { Container, Link } from "@material-ui/core"
 import Swal from "sweetalert2"
 
 class Login extends Component {
@@ -41,6 +41,7 @@ class Login extends Component {
                     .then(u => {
                         this.setState({ flagUser: true })
                         console.log("SUCCESS LOGGING IN")
+                        this.props.history.push("/Home");
                     })
                     .catch(error => {
                         Swal.fire({
