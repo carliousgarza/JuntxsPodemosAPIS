@@ -49,19 +49,33 @@ class SignUp extends Component {
                                     confirmButtonText: "Aceptar",
                                     onAfterClose: () => {
                                         this.setState({ show: false });
+                                        window.location.href = "/"
                                     }
                                 });
                             })
                             .catch(error => {
-                                Swal.fire({
-                                    title: "Error",
-                                    html: "Error creando usuario.",
-                                    icon: "error",
-                                    confirmButtonText: "Aceptar",
-                                    onAfterClose: () => {
-                                        this.setState({ show: false });
-                                    }
-                                });
+                                if(error.code === "auth/email-already-in-use"){
+                                    Swal.fire({
+                                        title: "Error",
+                                        html: "Ese correo electronico ya está en uso.",
+                                        icon: "error",
+                                        confirmButtonText: "Aceptar",
+                                        onAfterClose: () => {
+                                            this.setState({ show: false });
+                                        }
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        title: "Error",
+                                        html: "Error creando usuario.",
+                                        icon: "error",
+                                        confirmButtonText: "Aceptar",
+                                        onAfterClose: () => {
+                                            this.setState({ show: false });
+                                        }
+                                    });
+                                }
                             })
                     } else {
                         Swal.fire({
