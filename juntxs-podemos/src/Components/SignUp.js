@@ -44,7 +44,7 @@ class SignUp extends Component {
                             .then(u => {
                                 Swal.fire({
                                     title: "¡Èxito!",
-                                    html: "Creación de usuario exitosa",
+                                    html: "Creación de usuario exitosa.",
                                     icon: "success",
                                     confirmButtonText: "Aceptar",
                                     onAfterClose: () => {
@@ -55,7 +55,7 @@ class SignUp extends Component {
                             .catch(error => {
                                 Swal.fire({
                                     title: "Error",
-                                    html: "Error creando usuario",
+                                    html: "Error creando usuario.",
                                     icon: "error",
                                     confirmButtonText: "Aceptar",
                                     onAfterClose: () => {
@@ -66,7 +66,7 @@ class SignUp extends Component {
                     } else {
                         Swal.fire({
                             title: "Error",
-                            html: "Las dos contraseñas deben ser idénticas",
+                            html: "Las dos contraseñas deben ser idénticas.",
                             icon: "error",
                             confirmButtonText: "Aceptar",
                             onAfterClose: () => {
@@ -77,7 +77,7 @@ class SignUp extends Component {
                 } else {
                     Swal.fire({
                         title: "Error",
-                        html: "Debes ingresar una contraseña válida de al menos 6 caracteres",
+                        html: "Debes ingresar una contraseña válida de al menos 6 caracteres, sin espacios.",
                         icon: "error",
                         confirmButtonText: "Aceptar",
                         onAfterClose: () => {
@@ -88,7 +88,7 @@ class SignUp extends Component {
             } else {
                 Swal.fire({
                     title: "Error",
-                    html: "Debes ingresar un correo válido",
+                    html: "Debes ingresar un correo válido.",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                     onAfterClose: () => {
@@ -99,7 +99,7 @@ class SignUp extends Component {
         } else {
             Swal.fire({
                 title: "Error",
-                html: "Todas las areas deben de estar llenas",
+                html: "Debes llenar todas las areas.",
                 icon: "error",
                 confirmButtonText: "Aceptar",
                 onAfterClose: () => {
