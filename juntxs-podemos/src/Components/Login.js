@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Container } from "@material-ui/core"
 import Swal from "sweetalert2"
+import logo from '../Assets/JXP.png';
+
 
 class Login extends Component {
     constructor(props) {
@@ -82,8 +84,17 @@ class Login extends Component {
         return (
             <div>
                 <div id="leftHalf">
-                    <Container>
-                        <h1>Juntxs Podemos</h1>
+                    <Container>                        
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <img src={logo} alt="Juntos Podemos" id="logo"/>
                     </Container>
 
                 </div>
@@ -135,7 +146,7 @@ class Login extends Component {
                         <br></br>
 
                         <div>
-                            ¿No tienes cuenta? <a href="/SignUp">Crea una</a>
+                            ¿No tienes cuenta? <a href="/SignUp">Regístrate</a>
                         </div>
 
                     </Container>

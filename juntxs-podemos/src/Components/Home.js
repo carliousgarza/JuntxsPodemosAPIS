@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./Login.css"
 import firebase from '../config/firebase'
-import Navbar from './Navbar'
+import Navbar from "./Navbar.js";
 
 class Home extends Component {
     constructor(props) {
