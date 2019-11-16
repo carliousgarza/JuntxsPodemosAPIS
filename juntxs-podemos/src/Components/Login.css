@@ -14,3 +14,9 @@
     right: 0px;
     height: 100%;
   }
+
+  #logo {
+    width: 80%;
+    margin: auto;
+    display: block;
+  }
