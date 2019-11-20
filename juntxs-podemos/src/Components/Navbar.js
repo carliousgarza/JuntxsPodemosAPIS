@@ -156,6 +156,9 @@ export default function PersistentDrawerLeft() {
             <ListItemLink href="/Eventos">
                 <ListItemText primary={'Eventos'} />
             </ListItemLink>
+            <ListItemLink href="/Activity">
+                <ListItemText primary={'Crea un evento'} />
+            </ListItemLink>
         </List>
         <Divider />
         <List>
