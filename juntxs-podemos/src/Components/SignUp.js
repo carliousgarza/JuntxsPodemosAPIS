@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import "./Login.css"
+import fire from "../config/firebase";
 import firebase from '../config/firebase'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -42,6 +43,30 @@ class SignUp extends Component {
                             .auth()
                             .createUserWithEmailAndPassword(this.state.email, this.state.password)
                             .then(u => {
+                                const valores = {
+                                  ID: firebase.auth().currentUser.uid,
+                                  name: this.state.name,
+                                  mail: this.state.email,
+                                  userType: 0
+                                };
+
+                                console.log(valores)
+
+                                fire.firestore()
+                                  .collection("Users")
+                                  .doc(firebase.auth().currentUser.uid)
+                                  .set(valores)
+                                  .then(() => {
+                                    firebase
+                                      .auth()
+                                      .currentUser.sendEmailVerification();
+                                    firebase.auth().signOut();
+                                  })
+                                  .catch(error => {
+                                    console.log(error);
+                                  });
+                                })
+                            .then(u => {
                                 Swal.fire({
                                     title: "¡Èxito!",
                                     html: "Creación de usuario exitosa.",
@@ -66,6 +91,7 @@ class SignUp extends Component {
                                     });
                                 }
                                 else {
+                                    console.log(error)
                                     Swal.fire({
                                         title: "Error",
                                         html: "Error creando usuario.",
