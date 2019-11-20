@@ -149,9 +149,15 @@ export default function PersistentDrawerLeft() {
             </ListItemLink>
             <ListItemLink href="/EnMty">
                 <ListItemText primary={'¿Qué se hace en Monterrey?'} />
-            </ListItemLink>           
+            </ListItemLink>
             <ListItemLink href="/Involucrate">
                 <ListItemText primary={'Involucrate'} />
+            </ListItemLink>
+            <ListItemLink href="/Eventos">
+                <ListItemText primary={'Eventos'} />
+            </ListItemLink>
+            <ListItemLink href="/Activity">
+                <ListItemText primary={'Crea un evento'} />
             </ListItemLink>
         </List>
         <Divider />

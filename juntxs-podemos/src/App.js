@@ -8,6 +8,7 @@ import ConoceIniciativa from './Components/ConoceIniciativa';
 import QueSeHace from './Components/QueSeHace';
 import Involucrate from './Components/Involucrate';
 import Eventos from './Components/Eventos';
+import Activity from './Components/Activity';
 
 function App() {
   return (
@@ -21,10 +22,11 @@ function App() {
           <Route path="/EnMty" component = {QueSeHace} exact/>
           <Route path="/Involucrate" component = {Involucrate} exact/>
           <Route path="/Eventos" component = {Eventos} exact/>
+          <Route path="/Activity" component = {Activity} exact/>
         </div>
 
       </Router>
-      
+
     </div>
   );
 }
