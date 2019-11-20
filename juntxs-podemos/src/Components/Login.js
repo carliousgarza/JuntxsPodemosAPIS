@@ -15,7 +15,8 @@ class Login extends Component {
             email: "",
             password: "",
             show: false,
-            flagUser: false
+            flagUser: false,
+            user: {}
         };
     }
 
@@ -41,9 +42,24 @@ class Login extends Component {
                     .auth()
                     .signInWithEmailAndPassword(this.state.email, this.state.password)
                     .then(u => {
-                        this.setState({ flagUser: true })
-                        console.log("SUCCESS LOGGING IN")
-                        this.props.history.push("/Home");
+                    /*    var user = firebase.auth().currentUser
+                            this.setState({user})
+                            console.log("aaaaaaaaa",this.state.user)
+
+                            if (this.state.user.emailVerified) {*/
+                                this.setState({ flagUser: true })
+                                console.log("SUCCESS LOGGING IN")
+                                this.props.history.push("/Home");
+                /*            }
+                            else{
+                                firebase.auth().signOut();
+                                Swal.fire({
+                                    title: "Error",
+                                    html: "Tienes que verificar tu cuenta.",
+                                    icon: "error",
+                                    confirmButtonText: "Aceptar",
+                                });
+                            }*/
                     })
                     .catch(error => {
                         Swal.fire({
@@ -84,7 +100,7 @@ class Login extends Component {
         return (
             <div>
                 <div id="leftHalf">
-                    <Container>                        
+                    <Container>
                         <br></br>
                         <br></br>
                         <br></br>
@@ -94,7 +110,7 @@ class Login extends Component {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <img src={logo} alt="Juntos Podemos" id="logo"/>
+                        <img src={logo} alt="Juntos Podemos" id="logo" />
                     </Container>
 
                 </div>
