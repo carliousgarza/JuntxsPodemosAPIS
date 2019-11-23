@@ -10,25 +10,25 @@ import Involucrate from './Components/Involucrate';
 import Eventos from './Components/Eventos';
 import Activity from './Components/Activity';
 
-function App() {
-  return (
-    <div>
-      <Router>
-        <Route path="/" component={Login} exact/>
-        <div>
-          <Route path="/SignUp" component={SignUp} exact/>
-          <Route path="/Home" component = {Home} exact/>
-          <Route path="/Conoce" component = {ConoceIniciativa} exact/>
-          <Route path="/EnMty" component = {QueSeHace} exact/>
-          <Route path="/Involucrate" component = {Involucrate} exact/>
-          <Route path="/Eventos" component = {Eventos} exact/>
-          <Route path="/Activity" component = {Activity} exact/>
-        </div>
-
-      </Router>
-
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Router>
+          <Route path="/" component={Login} exact/>
+          <div>
+            <Route path="/SignUp" component={SignUp} exact/>
+            <Route path="/Home" component = {Home} exact/>
+            <Route path="/Conoce" component = {ConoceIniciativa} exact/>
+            <Route path="/EnMty" component = {QueSeHace} exact/>
+            <Route path="/Involucrate" component = {Involucrate} exact/>
+            <Route path="/Eventos" component = {Eventos} exact/>
+            <Route path="/Activity" component = {Activity} exact/>
+          </div>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
