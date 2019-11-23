@@ -19,7 +19,7 @@ class QueSeHace extends Component {
     render() {
         return (
             <div>
-                <Navbar></Navbar>
+                <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
                 <h1>¿Qué se hace en Monterrey?</h1>
             </div>
         );

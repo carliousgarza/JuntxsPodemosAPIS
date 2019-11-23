@@ -47,18 +47,25 @@ class App extends React.Component {
   }
 
   render() {
+    const isCurrentUserAdmin = this.isCurrentUserAdmin()
     return (
       <div>
         <Router>
           <Route path="/" component={Login} exact/>
           <div>
             <Route path="/SignUp" component={SignUp} exact/>
-            <Route path="/Home" component = {Home} exact/>
-            <Route path="/Conoce" component = {ConoceIniciativa} exact/>
-            <Route path="/EnMty" component = {QueSeHace} exact/>
-            <Route path="/Involucrate" component = {Involucrate} exact/>
-            <Route path="/Eventos" component = {Eventos} exact/>
-            <Route path="/Activity" component = {Activity} exact/>
+            <Route path="/Home"
+                   component = {() => <Home isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Conoce"
+                   component = {() => <ConoceIniciativa isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/EnMty"
+                   component = {() => <QueSeHace isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Involucrate"
+                   component = {() => <Involucrate isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Eventos"
+                   component = {() => <Eventos isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Activity"
+                   component = {() => <Activity isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
           </div>
         </Router>
       </div>

@@ -19,11 +19,11 @@ class ConoceIniciativa extends Component {
     render() {
         return (
             <div>
-                <Navbar></Navbar>
+                <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
                 <div>
                     <h1>Conoce la iniciativa</h1>
                 </div>
-                
+
             </div>
         );
     }

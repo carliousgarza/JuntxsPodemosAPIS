@@ -83,7 +83,7 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
   }
 
-export default function PersistentDrawerLeft() {
+export default function Navbar(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -155,9 +155,11 @@ export default function PersistentDrawerLeft() {
             <ListItemLink href="/Eventos">
                 <ListItemText primary={'Eventos'} />
             </ListItemLink>
-            <ListItemLink href="/Activity">
-                <ListItemText primary={'Crea un evento'} />
-            </ListItemLink>
+            {props.isCurrentUserAdmin &&
+              <ListItemLink href="/Activity">
+                  <ListItemText primary={'Crea un evento'} />
+              </ListItemLink>
+            }
         </List>
         <Divider />
         <List>
