@@ -29,7 +29,7 @@ class Eventos extends Component {
     render() {
         return (
             <div>
-                <Navbar></Navbar>
+                <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
                 <h1>Lista de eventos y actividades</h1>
                 {activitycards}
             </div>

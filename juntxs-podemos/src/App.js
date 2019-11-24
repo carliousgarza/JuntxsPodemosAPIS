@@ -9,26 +9,68 @@ import QueSeHace from './Components/QueSeHace';
 import Involucrate from './Components/Involucrate';
 import Eventos from './Components/Eventos';
 import Activity from './Components/Activity';
+import fire from './config/firebase';
+import firebase from './config/firebase';
 
-function App() {
-  return (
-    <div>
-      <Router>
-        <Route path="/" component={Login} exact/>
-        <div>
-          <Route path="/SignUp" component={SignUp} exact/>
-          <Route path="/Home" component = {Home} exact/>
-          <Route path="/Conoce" component = {ConoceIniciativa} exact/>
-          <Route path="/EnMty" component = {QueSeHace} exact/>
-          <Route path="/Involucrate" component = {Involucrate} exact/>
-          <Route path="/Eventos" component = {Eventos} exact/>
-          <Route path="/Activity" component = {Activity} exact/>
-        </div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: null,
+      currentUserType: null
+    }
+  }
 
-      </Router>
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // Update currentUser and currentUserType to App state
+        this.setState({currentUser: user})
+        this.setCurrentUserType(user)
+      } else {
+        // No user was found
+      }
+    });
+  }
 
-    </div>
-  );
+  setCurrentUserType(currentUser) {
+    const currentUserId = currentUser.uid
+    fire.firestore().collection("Users").doc(currentUserId).get()
+      .then(doc=>{
+        const currentUserData = doc.data();
+        this.setState({currentUserType: currentUserData.userType})
+      })
+  }
+
+  isCurrentUserAdmin() {
+    return this.state.currentUserType == 0
+  }
+
+  render() {
+    const isCurrentUserAdmin = this.isCurrentUserAdmin()
+    return (
+      <div>
+        <Router>
+          <Route path="/" component={Login} exact/>
+          <div>
+            <Route path="/SignUp" component={SignUp} exact/>
+            <Route path="/Home"
+                   component = {() => <Home isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Conoce"
+                   component = {() => <ConoceIniciativa isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/EnMty"
+                   component = {() => <QueSeHace isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Involucrate"
+                   component = {() => <Involucrate isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Eventos"
+                   component = {() => <Eventos isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+            <Route path="/Activity"
+                   component = {() => <Activity isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+          </div>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

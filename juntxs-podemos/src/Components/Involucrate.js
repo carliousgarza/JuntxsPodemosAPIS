@@ -15,11 +15,11 @@ class Involucrate extends Component {
             }
           });
     }
-    
+
     render() {
         return (
             <div>
-                <Navbar></Navbar>
+                <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
                 <h1>¿Cómo involucrarte?</h1>
             </div>
         );

@@ -19,7 +19,7 @@ class Activity extends Component {
         }
       };
   }
-  
+
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -35,7 +35,7 @@ class Activity extends Component {
   render() {
       return (
           <div>
-              <Navbar></Navbar>
+              <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
               <h1>Crea un evento</h1>
               <form>
                 <div>

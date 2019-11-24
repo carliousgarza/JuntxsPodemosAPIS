@@ -29,7 +29,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Navbar></Navbar> 
+                <Navbar isCurrentUserAdmin={this.props.isCurrentUserAdmin}></Navbar>
             </div>
         );
     }
