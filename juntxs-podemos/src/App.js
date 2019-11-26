@@ -9,6 +9,7 @@ import QueSeHace from './Components/QueSeHace';
 import Involucrate from './Components/Involucrate';
 import Eventos from './Components/Eventos';
 import Activity from './Components/Activity';
+import EditProfile from './Components/EditProfile';
 import fire from './config/firebase';
 import firebase from './config/firebase';
 
@@ -25,8 +26,9 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // Update currentUser and currentUserType to App state
-        this.setState({currentUser: user})
+        this.setState({ currentUser: user })
         this.setCurrentUserType(user)
+        console.log("user appjs", user)
       } else {
         // No user was found
       }
@@ -36,9 +38,9 @@ class App extends React.Component {
   setCurrentUserType(currentUser) {
     const currentUserId = currentUser.uid
     fire.firestore().collection("Users").doc(currentUserId).get()
-      .then(doc=>{
+      .then(doc => {
         const currentUserData = doc.data();
-        this.setState({currentUserType: currentUserData.userType})
+        this.setState({ currentUserType: currentUserData.userType })
       })
   }
 
@@ -51,21 +53,23 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <Route path="/" component={Login} exact/>
+          <Route path="/" component={Login} exact />
           <div>
-            <Route path="/SignUp" component={SignUp} exact/>
+            <Route path="/SignUp" component={SignUp} exact />
             <Route path="/Home"
-                   component = {() => <Home isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <Home isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Conoce"
-                   component = {() => <ConoceIniciativa isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <ConoceIniciativa isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/EnMty"
-                   component = {() => <QueSeHace isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <QueSeHace isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Involucrate"
-                   component = {() => <Involucrate isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <Involucrate isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Eventos"
-                   component = {() => <Eventos isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <Eventos isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Activity"
-                   component = {() => <Activity isCurrentUserAdmin={isCurrentUserAdmin}/>} exact/>
+              component={() => <Activity isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
+            <Route path="/EditarPerfil"
+              component={() => <EditProfile isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
           </div>
         </Router>
       </div>
