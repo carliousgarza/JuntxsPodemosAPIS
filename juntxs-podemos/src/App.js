@@ -7,7 +7,6 @@ import Home from './Components/Home';
 import ConoceIniciativa from './Components/ConoceIniciativa';
 import QueSeHace from './Components/QueSeHace';
 import Involucrate from './Components/Involucrate';
-import Eventos from './Components/Eventos';
 import Activity from './Components/Activity';
 import EditProfile from './Components/EditProfile';
 import fire from './config/firebase';
@@ -65,8 +64,6 @@ class App extends React.Component {
               component={() => <QueSeHace isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Involucrate"
               component={() => <Involucrate isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
-            <Route path="/Eventos"
-              component={() => <Eventos isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/Activity"
               component={() => <Activity isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/EditarPerfil"
