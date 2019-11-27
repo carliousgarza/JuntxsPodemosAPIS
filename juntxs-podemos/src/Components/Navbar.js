@@ -124,7 +124,8 @@ export default function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img src={Logo} alt="Juntos Podemos" width="20%" />
+          
+          <img src={Logo} alt="Juntos Podemos" width="20%" /> 
         </Toolbar>
       </AppBar>
       <Drawer

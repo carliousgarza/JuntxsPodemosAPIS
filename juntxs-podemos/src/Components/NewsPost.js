@@ -49,7 +49,7 @@ export default function RecipeReviewCard() {
             <Card className={classes.card}>
             <CardHeader
                 title="Limpiando la huasteca"
-                subheader="24 de noviembre de 2016"
+                subheader="24 de noviembre de 2019"
             />
             <CardMedia
                 className={classes.media}
@@ -104,7 +104,7 @@ export default function RecipeReviewCard() {
             <Card className={classes.card}>
             <CardHeader
                 title="PIAO 🌊 E00 "
-                subheader="24 de noviembre de 2016"
+                subheader="24 de noviembre de 2019"
             />
             <CardMedia
                 className={classes.media}
