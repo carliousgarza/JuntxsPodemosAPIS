@@ -60,7 +60,6 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -110,6 +109,7 @@ export default function Navbar(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="inherit"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -143,6 +143,9 @@ export default function Navbar(props) {
         </div>
         <Divider />
         <List>
+          <ListItemLink href="/Home">
+                <ListItemText primary={'Foro'} />
+            </ListItemLink>
             <ListItemLink href="/Conoce">
                 <ListItemText primary={'Conoce la iniciativa'} />
             </ListItemLink>
@@ -150,7 +153,7 @@ export default function Navbar(props) {
                 <ListItemText primary={'¿Qué se hace en Monterrey?'} />
             </ListItemLink>
             <ListItemLink href="/Involucrate">
-                <ListItemText primary={'Involucrate'} />
+                <ListItemText primary={'Involúcrate'} />
             </ListItemLink>
             <ListItemLink href="/Eventos">
                 <ListItemText primary={'Eventos'} />
