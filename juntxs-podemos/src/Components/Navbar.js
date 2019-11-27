@@ -155,9 +155,6 @@ export default function Navbar(props) {
             <ListItemLink href="/Involucrate">
                 <ListItemText primary={'Involúcrate'} />
             </ListItemLink>
-            <ListItemLink href="/Eventos">
-                <ListItemText primary={'Eventos'} />
-            </ListItemLink>
             {props.isCurrentUserAdmin &&
               <ListItemLink href="/Activity">
                   <ListItemText primary={'Crea un evento'} />
