@@ -18,7 +18,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: null,
-      currentUserType: null
+      currentUserType: null,
+      currentUserData: null
     }
   }
 
@@ -28,7 +29,6 @@ class App extends React.Component {
         // Update currentUser and currentUserType to App state
         this.setState({ currentUser: user })
         this.setCurrentUserType(user)
-        console.log("user appjs", user)
       } else {
         // No user was found
       }
@@ -40,12 +40,13 @@ class App extends React.Component {
     fire.firestore().collection("Users").doc(currentUserId).get()
       .then(doc => {
         const currentUserData = doc.data();
+        this.setState({ currentUserData: currentUserData})
         this.setState({ currentUserType: currentUserData.userType })
       })
   }
 
   isCurrentUserAdmin() {
-    return this.state.currentUserType == 0
+    return this.state.currentUserType === 0
   }
 
   render() {
@@ -69,7 +70,7 @@ class App extends React.Component {
             <Route path="/Activity"
               component={() => <Activity isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
             <Route path="/EditarPerfil"
-              component={() => <EditProfile isCurrentUserAdmin={isCurrentUserAdmin} />} exact />
+              component = {EditProfile} exact />
           </div>
         </Router>
       </div>
