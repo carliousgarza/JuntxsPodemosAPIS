@@ -7,6 +7,16 @@
     height: 100%;
     background-color: #576842;
   }
+
+  #leftHalf2 {
+    width: 60%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    background-color: #236266;
+  }
   
   #rightHalf {
     width: 40%;

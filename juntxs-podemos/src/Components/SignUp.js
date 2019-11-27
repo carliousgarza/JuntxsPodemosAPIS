@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Container } from "@material-ui/core"
 import Swal from "sweetalert2"
+import logo from '../Assets/JXP.png';
 
 class SignUp extends Component {
     constructor(props) {
@@ -26,8 +27,8 @@ class SignUp extends Component {
     };
 
     signUp = e => {
-        
-        if(this.state.email !== "" && this.state.name !== "" && this.state.password !== "" && this.state.password2 !== ""){
+
+        if (this.state.email !== "" && this.state.name !== "" && this.state.password !== "" && this.state.password2 !== "") {
             var validator = require("email-validator"); //para validar que sea un correo
             if (validator.validate(this.state.email)) {
                 var passwordValidator = require("password-validator"); // para validar que sea una password válida
@@ -37,35 +38,35 @@ class SignUp extends Component {
                     .is().max(20)
                     .has().not().spaces();
                 if (schema.validate(this.state.password)) { //la contraseña es valida
-                    if(this.state.password === this.state.password2){   //la contraseña es la misma a la de confirmar
+                    if (this.state.password === this.state.password2) {   //la contraseña es la misma a la de confirmar
                         if (e) e.preventDefault();
                         firebase
                             .auth()
                             .createUserWithEmailAndPassword(this.state.email, this.state.password)
                             .then(u => {
                                 const valores = {
-                                  ID: firebase.auth().currentUser.uid,
-                                  name: this.state.name,
-                                  mail: this.state.email,
-                                  userType: 0
+                                    ID: firebase.auth().currentUser.uid,
+                                    name: this.state.name,
+                                    mail: this.state.email,
+                                    userType: 0
                                 };
 
                                 console.log(valores)
 
                                 fire.firestore()
-                                  .collection("Users")
-                                  .doc(firebase.auth().currentUser.uid)
-                                  .set(valores)
-                                  .then(() => {
-                                    firebase
-                                      .auth()
-                                      .currentUser.sendEmailVerification();
-                                    firebase.auth().signOut();
-                                  })
-                                  .catch(error => {
-                                    console.log(error);
-                                  });
-                                })
+                                    .collection("Users")
+                                    .doc(firebase.auth().currentUser.uid)
+                                    .set(valores)
+                                    .then(() => {
+                                        firebase
+                                            .auth()
+                                            .currentUser.sendEmailVerification();
+                                        firebase.auth().signOut();
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                    });
+                            })
                             .then(u => {
                                 Swal.fire({
                                     title: "¡Èxito!",
@@ -79,7 +80,7 @@ class SignUp extends Component {
                                 });
                             })
                             .catch(error => {
-                                if(error.code === "auth/email-already-in-use"){
+                                if (error.code === "auth/email-already-in-use") {
                                     Swal.fire({
                                         title: "Error",
                                         html: "Ese correo electronico ya está en uso.",
@@ -90,7 +91,7 @@ class SignUp extends Component {
                                         }
                                     });
                                 }
-                                else {
+                                else {
                                     console.log(error)
                                     Swal.fire({
                                         title: "Error",
@@ -152,9 +153,18 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-                <div id="leftHalf">
+                <div id="leftHalf2">
                     <Container>
-                        <h1>Juntxs Podemos</h1>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <img src={logo} alt="Juntos Podemos" id="logo" />
                     </Container>
 
                 </div>

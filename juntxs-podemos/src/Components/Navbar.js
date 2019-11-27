@@ -160,9 +160,10 @@ export default function Navbar(props) {
               <ListItemText primary={'Crea un evento'} />
             </ListItemLink>
           }
-
         </List>
+
         <Divider />
+
         <List>
           <ListItemLink href="/EditarPerfil">
             <ListItemText primary={'Editar mi perfil'} />

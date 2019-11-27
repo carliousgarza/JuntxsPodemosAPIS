@@ -87,7 +87,10 @@ class Activity extends Component {
         Swal.fire({
           type: "success",
           title: "¡Éxito!",
-          text: "El evento se ha creado."
+          text: "El evento ha sido registrado y esta siendo evaluado.",
+          onAfterClose: () => {
+            window.location.href = "/Home"
+        }
         });        
       }
 

@@ -55,7 +55,7 @@ class ActivityCard extends React.Component {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={this.confirmAssistance}>Registrate</Button>
+              <Button size="small" onClick={this.confirmAssistance} color="primary">Registrate</Button>
             </CardActions>
           </Card>
           <hr />

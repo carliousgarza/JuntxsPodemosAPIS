@@ -176,7 +176,7 @@ class ConoceIniciativa extends Component {
                     <Container maxWidth="md" component="main">
                         <Grid container spacing={8} justify="center" alignItems="flex-end">
                         {tiers.map(tier => (
-                            <Grid item xs={6} sm={3}>
+                            <Grid item xs={6} sm={3} key={tier.title.toString()}>
                                 <Link href={tier.buttonLink} target="_blank"><img src={tier.icon} width="90%"/></Link>
                             </Grid>
                         ))}
