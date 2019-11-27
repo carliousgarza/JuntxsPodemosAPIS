@@ -16,6 +16,7 @@ class EditProfile extends Component {
         super(props);
         this.state = {
             interests: [],
+            oldName: "",
             newName: "",
             newPassword: "",
             newConfirmPassword: "",
@@ -37,11 +38,12 @@ class EditProfile extends Component {
                         this.setState({ user: currentUserData })
                         this.setState({ currentUserType: currentUserData.userType })
                         this.setState({ newInterests: currentUserData.interests})
+                        this.setState({ newName: currentUserData.name, oldName: currentUserData.name})
                     })
                 fire.firestore().collection("Interests").doc("Interests").get()
                     .then(doc => {
                         const interests = doc.data().Interests;
-                        this.setState({ interests, newName: doc.data().name })
+                        this.setState({ interests })
                     })
             } else {
                 // No user is signed in.
@@ -70,7 +72,6 @@ class EditProfile extends Component {
     }
 
     handleConfirmar = () => {
-        
         Swal.fire({
             title: '¿Seguro que quieres hacer estos cambios?',
             text: "¡Los cambios serán permanentes despues de esta acción!",
@@ -82,9 +83,11 @@ class EditProfile extends Component {
         })
         .then((result) => {
             var updateName = this.state.newName;
-            var updateInterests = this.state.newInterests
-            var userID = this.state.user.ID
-            console.log(updateName, updateInterests, userID)
+            if(updateName===""){
+                updateName = this.state.oldName;
+            }
+            var updateInterests = this.state.newInterests;
+            var userID = this.state.user.ID;
             if (result.value) {
                 fire.firestore().collection("Users").doc(userID)
                     .update({
