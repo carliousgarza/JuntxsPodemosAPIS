@@ -110,12 +110,11 @@ class EditProfile extends Component {
             console.log(error)
         })
     }
-
-
+    
     render() {
         return (
             <div>
-                <div id="leftHalf">
+                <div id="leftHalf3">
                     <Container>
                         <br></br>
                         <br></br>

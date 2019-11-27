@@ -17,6 +17,16 @@
     height: 100%;
     background-color: #236266;
   }
+
+  #leftHalf3 {
+    width: 60%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    background-color: #EFE8DF;
+  }
   
   #rightHalf {
     width: 40%;
