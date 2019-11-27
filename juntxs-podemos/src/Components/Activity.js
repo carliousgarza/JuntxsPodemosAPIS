@@ -9,6 +9,9 @@ class Activity extends Component {
   constructor(props) {
       super(props);
       this.state = {
+        name: "",
+        category: "",
+        description: "",
         textField: {
           marginLeft: 100,
           marginRight: 100,
@@ -30,7 +33,28 @@ class Activity extends Component {
           window.location.href = "/"
         }
       });
-}
+    }
+
+    updateInput = e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    }
+
+    addActivity = e => {
+      e.preventDefault();
+      const db = firebase.firestore();
+      const activityRef = db.collection("Activities").add({
+        name: this.state.name,
+        category: this.state.category,
+        description: this.state.description
+      });
+      this.setState({
+        name: "",
+        category: "",
+        description: ""
+      });
+    };
 
   render() {
       return (
@@ -43,9 +67,11 @@ class Activity extends Component {
                     required
                     id="name-input"
                     label="Required"
-                    defaultValue="Nombre"
                     className={this.state.textField}
                     margin="normal"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.updateInput}
                   />
                 </div>
                 <div>
@@ -54,6 +80,9 @@ class Activity extends Component {
                     label="Categoría"
                     className={this.state.textField}
                     margin="normal"
+                    name="category"
+                    value={this.state.category}
+                    onChange={this.updateInput}
                   />
                 </div>
                 <div>
@@ -65,10 +94,13 @@ class Activity extends Component {
                     className={this.state.textField}
                     margin="normal"
                     variant="outlined"
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.updateInput}
                   />
                 </div>
                 <div>
-                <Button variant="contained" color="primary" className={this.state.button}>
+                <Button variant="contained" color="primary" className={this.state.button} onClick={this.addActivity}>
                   Crear evento
                 </Button>
                 </div>
