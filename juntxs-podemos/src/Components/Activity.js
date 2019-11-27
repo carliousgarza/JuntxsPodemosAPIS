@@ -76,7 +76,7 @@ class Activity extends Component {
     addActivity = e => {
       e.preventDefault();
       console.log(this.state.name)
-      if(this.state.name == '') {
+      if(this.state.name === '') {
         Swal.fire({
           title: 'Falta información',
           text: "Escribe tus datos para mandar el mensaje",

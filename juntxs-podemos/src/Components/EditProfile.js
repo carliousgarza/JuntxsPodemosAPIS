@@ -36,11 +36,11 @@ class EditProfile extends Component {
                         const currentUserData = doc.data();
                         this.setState({ user: currentUserData })
                         this.setState({ currentUserType: currentUserData.userType })
+                        this.setState({ newInterests: currentUserData.interests})
                     })
                 fire.firestore().collection("Interests").doc("Interests").get()
                     .then(doc => {
                         const interests = doc.data().Interests;
-                        console.log(interests)
                         this.setState({ interests, newName: doc.data().name })
                     })
             } else {
@@ -63,6 +63,10 @@ class EditProfile extends Component {
                 : [...state.newInterests, x]
         }));
         console.log(this.state.newInterests)
+    }
+
+    handleCancel = () => {
+        window.location.href = "/Home"
     }
 
     handleConfirmar = () => {
@@ -192,12 +196,12 @@ class EditProfile extends Component {
                         <br></br>
 
                         <div>
-                            <Button variant="contained" color="default" onClick={this.cancel}>
+                            <Button variant="contained" color="default" onClick={this.handleCancel}>
                                 Cancelar
                             </Button>
 
                             <Button variant="contained" color="default" onClick={this.handleConfirmar} style={{ marginLeft: "10px" }}>
-                                Confirmar
+                                Guardar Cambios
                             </Button>
                         </div>
 

@@ -79,30 +79,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
+  return <ListItem button component="a" {...props} />;
+}
 
 export default function Navbar(props) {
-    const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
-    const signOut = e => {
-        firebase
-            .auth()
-            .signOut()
-            .then(u => {
-                window.location.href = "/"
-            })
-    }
+  const signOut = e => {
+    firebase
+      .auth()
+      .signOut()
+      .then(u => {
+        window.location.href = "/"
+      })
+  }
 
   return (
     <div className={classes.root}>
@@ -124,7 +124,7 @@ export default function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img src={Logo} alt="Juntos Podemos" width="20%"/>
+          <img src={Logo} alt="Juntos Podemos" width="20%" />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -144,28 +144,32 @@ export default function Navbar(props) {
         <Divider />
         <List>
           <ListItemLink href="/Home">
-                <ListItemText primary={'Foro'} />
+            <ListItemText primary={'Foro'} />
+          </ListItemLink>
+          <ListItemLink href="/Conoce">
+            <ListItemText primary={'Conoce la iniciativa'} />
+          </ListItemLink>
+          <ListItemLink href="/EnMty">
+            <ListItemText primary={'¿Qué se hace en Monterrey?'} />
+          </ListItemLink>
+          <ListItemLink href="/Involucrate">
+            <ListItemText primary={'Involúcrate'} />
+          </ListItemLink>
+          {props.isCurrentUserAdmin &&
+            <ListItemLink href="/Activity">
+              <ListItemText primary={'Crea un evento'} />
             </ListItemLink>
-            <ListItemLink href="/Conoce">
-                <ListItemText primary={'Conoce la iniciativa'} />
-            </ListItemLink>
-            <ListItemLink href="/EnMty">
-                <ListItemText primary={'¿Qué se hace en Monterrey?'} />
-            </ListItemLink>
-            <ListItemLink href="/Involucrate">
-                <ListItemText primary={'Involúcrate'} />
-            </ListItemLink>
-            {props.isCurrentUserAdmin &&
-              <ListItemLink href="/Activity">
-                  <ListItemText primary={'Crea un evento'} />
-              </ListItemLink>
-            }
+          }
+
         </List>
         <Divider />
         <List>
-            <ListItem button onClick={signOut}>
-                <ListItemText primary={'Cerrar sesión'} />
-            </ListItem>
+          <ListItemLink href="/EditarPerfil">
+            <ListItemText primary={'Editar mi perfil'} />
+          </ListItemLink>
+          <ListItem button onClick={signOut}>
+            <ListItemText primary={'Cerrar sesión'} />
+          </ListItem>
         </List>
       </Drawer>
       <main
